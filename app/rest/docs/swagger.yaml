@@ -1,0 +1,146 @@
+basePath: /api/v1
+definitions:
+  rest.Company:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  rest.CreateCompanyRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  rest.HTTPResponse:
+    properties:
+      msg:
+        example: any message
+        type: string
+    type: object
+  rest.IDResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  rest.SearchCompaniesResponse:
+    properties:
+      companies:
+        items:
+          $ref: '#/definitions/rest.Company'
+        type: array
+      next_page_token:
+        type: string
+    type: object
+info:
+  contact:
+    email: contato@coding4u.com.br
+    name: Coding4u
+  description: Swagger API for Company Service.
+  termsOfService: http://swagger.io/terms/
+  title: Company Swagger API
+  version: "1.0"
+paths:
+  /companies:
+    get:
+      consumes:
+      - application/json
+      description: Router for search companies
+      operationId: searchCompanies
+      parameters:
+      - description: page size
+        in: query
+        name: page_size
+        type: integer
+      - description: page token
+        in: query
+        name: page_token
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.SearchCompaniesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+      summary: search companies
+      tags:
+      - Company
+    post:
+      consumes:
+      - application/json
+      description: Router for create a new company
+      operationId: createCompany
+      parameters:
+      - description: JSON body for create a new company
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.CreateCompanyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.IDResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+      summary: create a new company
+      tags:
+      - Company
+  /companies/{company_id}:
+    get:
+      consumes:
+      - application/json
+      description: Router for find a company
+      operationId: findCompany
+      parameters:
+      - description: Company ID
+        in: path
+        name: company_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.Company'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/rest.HTTPResponse'
+      summary: find a company
+      tags:
+      - Company
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

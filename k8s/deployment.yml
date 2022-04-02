@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company-v1
+  labels:
+    app: company
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: company
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: company
+        version: v1
+    spec:
+      containers:
+      - name: company
+        image: ghcr.io/c-4u/pinned-company
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: rest
+          containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: company-secret
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+
+      imagePullSecrets:
+          - name: regsecret
