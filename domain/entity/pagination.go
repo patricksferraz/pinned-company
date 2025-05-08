@@ -2,7 +2,7 @@ package entity
 
 import (
 	"github.com/asaskevich/govalidator"
-	"github.com/c-4u/pinned-company/utils"
+	"github.com/patricksferraz/pinned-company/utils"
 )
 
 func init() {

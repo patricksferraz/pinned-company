@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/c-4u/pinned-company/domain/entity"
-	"github.com/c-4u/pinned-company/infra/client/kafka"
-	"github.com/c-4u/pinned-company/infra/db"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/patricksferraz/pinned-company/domain/entity"
+	"github.com/patricksferraz/pinned-company/infra/client/kafka"
+	"github.com/patricksferraz/pinned-company/infra/db"
 )
 
 type Repository struct {

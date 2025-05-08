@@ -1,4 +1,4 @@
-module github.com/c-4u/pinned-company
+module github.com/patricksferraz/pinned-company
 
 go 1.18
 

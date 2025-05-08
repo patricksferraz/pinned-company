@@ -2,8 +2,8 @@ package rest
 
 import (
 	"github.com/asaskevich/govalidator"
-	"github.com/c-4u/pinned-company/domain/service"
 	"github.com/gofiber/fiber/v2"
+	"github.com/patricksferraz/pinned-company/domain/service"
 )
 
 type RestService struct {

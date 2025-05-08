@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: company
-        image: ghcr.io/c-4u/pinned-company
+        image: ghcr.io/patricksferraz/pinned-company
         imagePullPolicy: IfNotPresent
         ports:
         - name: rest
